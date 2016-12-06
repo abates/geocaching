@@ -23,9 +23,13 @@ func walk(layers [][]int, row, column int, stack []int) {
 	stack = append(stack, layers[row][column])
 	if row == len(layers)-1 {
 		newMax := sum(stack)
+		//fmt.Printf("%d %v\n", newMax, stack)
 		if newMax > max {
 			max = newMax
-			maxPath = stack
+			if maxPath == nil {
+				maxPath = make([]int, len(stack))
+			}
+			copy(maxPath, stack)
 		}
 		return
 	}
